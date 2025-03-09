@@ -2,26 +2,24 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../../users.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-user',
+  imports: [],
   templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css'],
-  providers: [UsersService],
-  imports: [ReactiveFormsModule] // Asegúrate de incluirlo aquí
+  styleUrl: './add-user.component.css'
 })
 export class AddUserComponent {
-  form = new FormGroup({
-    name: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    gender: new FormControl('', Validators.required)
-  });
+  constructor(private  userService: UsersService, private router: Router){}
 
   data: any
 
-  constructor(private userService: UsersService, private router: Router) {}
-
-
+  form = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    gender: new FormControl('', Validators.required)
+  })
 
   addUser(){
     this.data = this.form.value

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import  User  from './User'; 
+import  User  from './User';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -7,27 +7,32 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  private url: string = "http://localhost:8000/api/"; 
+  private url: string = "http:localhost:8000/api/"
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.url}users/`); 
-  }
+// Obtener todos los usuarios
+getUsers(): Observable<User[]> {
+  return this.http.get<User[]>(`${this.url}+users/`);  // Llamada a la API para obtener usuarios
+}
 
-  getUserById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.url}user/${id}`); 
-  }
+// Obtener un usuario por su ID
+getUserById(id: number): Observable<User> {
+  return this.http.get<User>(`${this.url}+user/+${id}`);  // Llamada a la API para obtener un usuario por ID
+}
 
-  addUser (user: User): Observable<User> {
-    return this.http.post<User>(`${this.url}users/`, user);  
-  }
+// Crear un nuevo usuario
+addUser(user: User): Observable<User> {
+  return this.http.post<User>(`${this.url}+users/`, user);  // Llamada a la API para crear un nuevo usuario
+}
 
-  updateUser (id: number, user: User): Observable<User> {
-    return this.http.put<User>(`${this.url}user/${id}`, user); 
-  }
+// Actualizar un usuario existente
+updateUser(id: number, user: User): Observable<User> {
+  return this.http.put<User>(`${this.url}user/${id}`, user);  // Llamada a la API para actualizar un usuario
+}
 
-  deleteUserById(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}user/${id}`);
-  }
+// Eliminar un usuario
+deleteUserById(id: number): Observable<void> {
+  return this.http.delete<void>(`${this.url}user/${id}`);  // Llamada a la API para eliminar un usuario
+}
 }
