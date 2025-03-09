@@ -32,7 +32,7 @@ updateUser(id: number, user: User): Observable<User> {
 }
 
 // Eliminar un usuario
-deleteUser(id: number): Observable<void> {
+deleteUserById(id: number): Observable<void> {
   return this.http.delete<void>(`${this.url}user/${id}`);  // Llamada a la API para eliminar un usuario
 }
 }
