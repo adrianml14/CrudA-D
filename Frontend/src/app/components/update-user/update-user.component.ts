@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { UsersService } from '../../users.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-update-user',
-  imports: [],
+  standalone: true,
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './update-user.component.html',
-  styleUrl: './update-user.component.css'
+  styleUrls: ['./update-user.component.css']
 })
 export class UpdateUserComponent {
   user: any 

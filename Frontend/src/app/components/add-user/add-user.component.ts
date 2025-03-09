@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { RouterModule,Router } from '@angular/router';
 import { UsersService } from '../../users.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-user',
-  imports: [],
+  standalone: true,
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './add-user.component.html',
-  styleUrl: './add-user.component.css'
+  styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent {
   constructor(private  userService: UsersService, private router: Router){}

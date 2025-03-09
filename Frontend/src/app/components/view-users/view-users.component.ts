@@ -6,9 +6,10 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-view-users',
+  standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './view-users.component.html',
-  styleUrl: './view-users.component.css'
+  styleUrls: ['./view-users.component.css']
 })
 export class ViewUsersComponent {
   users: any | undefined
