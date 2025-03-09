@@ -1,31 +1,32 @@
 import { Component } from '@angular/core';
 import { UsersService } from '../../users.service';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-view-users',
-  imports: [CommonModule, RouterModule],
-  templateUrl: './view-users.component.html',
-  styleUrl: './view-users.component.css'
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.css'],
+  providers: [UsersService],
+  imports: [ReactiveFormsModule] // Asegúrate de incluirlo aquí
 })
 export class ViewUsersComponent {
-  users: any | undefined
+  users: any[] = [];
 
-  constructor(private  userService: UsersService){}
+  constructor(private userService: UsersService) {}
 
-  ngOnInit(): void{
-    this.userService.getUsers().subscribe(data=>{
-      this.users = data
-      console.log(data)
-    })
+  ngOnInit(): void {
+    this.loadUsers();
   }
 
-  deleteUser(id: number){
-    this.userService.deleteUserById(id).subscribe(data =>{
-      console.log(data)
-      this.ngOnInit() //refresh
-    })
+  loadUsers() {
+    this.userService.getUsers().subscribe(data => {
+      this.users = data;
+    });
+  }
+
+  deleteUser (id: number) {
+    this.userService.deleteUserById(id).subscribe(() => {
+      this.loadUsers(); // Refresh the user list
+    });
   }
 }
